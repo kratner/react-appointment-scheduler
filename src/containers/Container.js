@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import DateTime from "../data/DateTime";
 import EventForm from "../components/EventForm";
 import EventList from "../components/EventList";
+import Controls from "../components/Controls";
 // import styled from "styled-components";
 
 const style = {
@@ -36,6 +37,12 @@ class Container extends Component {
         }
       ]
     };
+    this.handleShowFormClick = this.handleShowFormClick.bind(this);
+  }
+  handleShowFormClick() {
+    this.setState({
+      formVisible: !this.state.formVisible
+    });
   }
   componentDidMount() {
     const dt = new DateTime();
@@ -48,7 +55,10 @@ class Container extends Component {
     return (
       <div id={this.props.id} style={style}>
         <p>Appointments</p>
-        <EventForm formVisible={this.state.formVisible} />
+        <Controls onShowFormClick={this.handleShowFormClick} />
+        {this.state.formVisible ? (
+          <EventForm formVisible={this.state.formVisible} />
+        ) : null}
         <EventList events={this.state.events} />
       </div>
     );
