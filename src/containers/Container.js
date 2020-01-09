@@ -57,7 +57,10 @@ class Container extends Component {
         <p>Appointments</p>
         <Controls onShowFormClick={this.handleShowFormClick} />
         {this.state.formVisible ? (
-          <EventForm formVisible={this.state.formVisible} />
+          <EventForm
+            formVisible={this.state.formVisible}
+            formTitle="Schedule an Event"
+          />
         ) : null}
         <EventList events={this.state.events} />
       </div>
