@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import DateTime from "../data/DateTime";
+import EventForm from "../components/EventForm";
+import EventList from "../components/EventList";
 // import styled from "styled-components";
 
 const style = {
@@ -16,21 +18,21 @@ class Container extends Component {
     super(props);
     this.state = {
       dt: "",
+      formVisible: true,
       events: [
         {
-          startdt: "9/1/2020 11:17:33",
-          enddt: "9/1/2020 11:17:33",
-          title: "test event",
+          startdt: "09/01/2020 11:00:00",
+          enddt: "09/01/2020 12:00:33",
+          title: "Doctor's Appointment",
           location: "San Diego",
-          description: "This is a test description of an event"
+          description: "My annual physical exam"
         },
         {
-          startdate: "9/1/2020 11:17:33",
-          enddt: "9/1/2020 11:17:33",
-          title: "test event",
+          startdt: "09/15/2020 17:15:00",
+          enddt: "09/15/2020 19:15:00",
+          title: "Dinner Date",
           location: "San Diego",
-          description: "This is a test description of an event",
-          data: "you can add what ever random data you may want to use later"
+          description: "Dinner with Jocelyn"
         }
       ]
     };
@@ -46,6 +48,8 @@ class Container extends Component {
     return (
       <div id={this.props.id} style={style}>
         <p>Appointments</p>
+        <EventForm formVisible={this.state.formVisible} />
+        <EventList events={this.state.events} />
       </div>
     );
   }
