@@ -1,18 +1,21 @@
+import MathUtils from "../utils/MathUtils";
+
 export default class DateTime {
   getCurrentDateTime() {
+    const mu = new MathUtils();
     const currentdate = new Date();
     const currentdatetime =
-      currentdate.getDate() +
+      mu.pad(currentdate.getMonth() + 1, 2) +
       "/" +
-      (currentdate.getMonth() + 1) +
+      mu.pad(currentdate.getDate(), 2) +
       "/" +
       currentdate.getFullYear() +
       " " +
-      currentdate.getHours() +
+      mu.pad(currentdate.getHours(), 2) +
       ":" +
-      currentdate.getMinutes() +
+      mu.pad(currentdate.getMinutes(), 2) +
       ":" +
-      currentdate.getSeconds();
+      mu.pad(currentdate.getSeconds(), 2);
     return currentdatetime;
   }
 }

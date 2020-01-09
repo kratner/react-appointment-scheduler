@@ -18,15 +18,15 @@ class Container extends Component {
       dt: "",
       events: [
         {
-          startdt: "2020-02-20",
-          enddt: "2020-02-20",
+          startdt: "9/1/2020 11:17:33",
+          enddt: "9/1/2020 11:17:33",
           title: "test event",
           location: "San Diego",
           description: "This is a test description of an event"
         },
         {
-          startdate: "2020-02-24",
-          enddt: "2020-02-24",
+          startdate: "9/1/2020 11:17:33",
+          enddt: "9/1/2020 11:17:33",
           title: "test event",
           location: "San Diego",
           description: "This is a test description of an event",
@@ -41,7 +41,6 @@ class Container extends Component {
     this.setState({
       dt: currentDateTime
     });
-    debugger;
   }
   render() {
     return (
