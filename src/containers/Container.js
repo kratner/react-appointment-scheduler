@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import DateTime from "../data/DateTime";
 // import styled from "styled-components";
 
 const style = {
@@ -14,23 +15,33 @@ class Container extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      dt: "",
       events: [
         {
-          start: "2015-07-20",
-          end: "2015-07-02",
-          eventClasses: "optionalEvent",
+          startdt: "2020-02-20",
+          enddt: "2020-02-20",
           title: "test event",
+          location: "San Diego",
           description: "This is a test description of an event"
         },
         {
-          start: "2015-07-19",
-          end: "2015-07-25",
+          startdate: "2020-02-24",
+          enddt: "2020-02-24",
           title: "test event",
+          location: "San Diego",
           description: "This is a test description of an event",
           data: "you can add what ever random data you may want to use later"
         }
       ]
     };
+  }
+  componentDidMount() {
+    const dt = new DateTime();
+    const currentDateTime = dt.getCurrentDateTime();
+    this.setState({
+      dt: currentDateTime
+    });
+    debugger;
   }
   render() {
     return (
