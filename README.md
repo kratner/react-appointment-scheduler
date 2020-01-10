@@ -1,3 +1,29 @@
+# Appointment Scheduler
+
+A ReactJS app built by Keith Ratner
+
+keith.ratner@gmail.com
+
+https://github.com/kratner
+
+## Instructions
+
+Unzip package. In project folder, run:
+
+`npm install`
+
+then
+
+`npm start`
+
+Sample data contains three records. All data modifications are volatile thus will not persist across sessions.
+
+Note that this project uses Material UI libraries.
+
+https://material-ui.com
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
