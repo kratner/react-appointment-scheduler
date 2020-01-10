@@ -22,15 +22,15 @@ class Container extends Component {
       formVisible: true,
       events: [
         {
-          startdt: "09/01/2020 11:00:00",
-          enddt: "09/01/2020 12:00:33",
+          dtstart: "09/01/2020 11:00:00",
+          dtend: "09/01/2020 12:00:33",
           title: "Doctor's Appointment",
           location: "San Diego",
           description: "My annual physical exam"
         },
         {
-          startdt: "09/15/2020 17:15:00",
-          enddt: "09/15/2020 19:15:00",
+          dtstart: "09/15/2020 17:15:00",
+          dtend: "09/15/2020 19:15:00",
           title: "Dinner Date",
           location: "San Diego",
           description: "Dinner with Jocelyn"
@@ -38,10 +38,26 @@ class Container extends Component {
       ]
     };
     this.handleShowFormClick = this.handleShowFormClick.bind(this);
+    this.handleFormCancel = this.handleFormCancel.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
   handleShowFormClick() {
     this.setState({
       formVisible: !this.state.formVisible
+    });
+  }
+  handleFormCancel() {
+    this.setState({
+      formVisible: false
+    });
+  }
+  handleFormSubmit(event) {
+    let events = this.state.events;
+    events.push(event);
+    debugger;
+    this.setState({
+      events: events,
+      formVisible: false
     });
   }
   componentDidMount() {
@@ -54,12 +70,16 @@ class Container extends Component {
   render() {
     return (
       <div id={this.props.id} style={style}>
-        <p>Appointments</p>
-        <Controls onShowFormClick={this.handleShowFormClick} />
+        <Controls
+          onShowFormClick={this.handleShowFormClick}
+          formVisible={this.state.formVisible}
+        />
         {this.state.formVisible ? (
           <EventForm
             formVisible={this.state.formVisible}
             formTitle="Schedule an Event"
+            onFormCancel={this.handleFormCancel}
+            onFormSubmit={this.handleFormSubmit}
           />
         ) : null}
         <EventList events={this.state.events} />

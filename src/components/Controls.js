@@ -13,7 +13,10 @@ const AddIcon = styled(IoIosAddCircleOutline)`
 export default props => {
   return (
     <div>
-      <AddIcon onClick={props.onShowFormClick} />
+      <AddIcon
+        onClick={props.onShowFormClick}
+        title={props.formVisible ? `Hide Form` : `Show Form`}
+      />
     </div>
   );
 };
