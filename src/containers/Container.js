@@ -5,7 +5,7 @@ import EventList from "../components/EventList";
 import Controls from "../components/Controls";
 
 const style = {
-  backgroundColor: "rgb(30,30,30)",
+  backgroundColor: "rgb(93,93,93)",
   color: "#ccc",
   display: "flex",
   flexDirection: "column",
