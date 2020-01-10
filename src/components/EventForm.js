@@ -30,6 +30,13 @@ export default props => {
   const [selectedDTEnd, handleDTEndChange] = useState(null);
   const [isDisabled, setDisabled] = useState(true);
   const dtFormat = "MM/dd/yyyy HH:mm";
+  const handleEsc = evt => {
+    if (evt.keyCode === 27) {
+      window.removeEventListener("keydown", handleEsc);
+      props.onFormCancel();
+    }
+  };
+  window.addEventListener("keydown", handleEsc);
   const handleSubmit = () => {
     const event = {
       dtstart: new Date(document.getElementById("dtstart").value),
