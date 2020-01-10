@@ -3,12 +3,14 @@ import DateTime from "../data/DateTime";
 import EventForm from "../components/EventForm";
 import EventList from "../components/EventList";
 import Controls from "../components/Controls";
-// import styled from "styled-components";
 
 const style = {
   backgroundColor: "rgb(30,30,30)",
   color: "#ccc",
   display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
   width: "100%",
   height: "100vh",
   padding: "0em 1em"
@@ -34,6 +36,13 @@ class Container extends Component {
           title: "Dinner Date",
           location: "San Diego",
           description: "Dinner with Jocelyn"
+        },
+        {
+          dtstart: new Date("7/15/2020 17:15"),
+          dtend: new Date("7/15/2020 19:15"),
+          title: "Dinner Date",
+          location: "San Diego",
+          description: "Dinner with Jocelyn"
         }
       ]
     };
@@ -53,9 +62,7 @@ class Container extends Component {
   }
   handleFormSubmit(event) {
     let events = this.state.events;
-    debugger;
     events.push(event);
-    debugger;
     this.setState({
       events: events,
       formVisible: false

@@ -8,57 +8,66 @@ import EventIcon from "@material-ui/icons/Event";
 import { format } from "date-fns";
 
 export default props => {
-  const events = props.events.map((node, index) => {
-    const dtFormat = "MMMM d, yyyy h:mm aaaa";
-    const fmtDTStart = format(new Date(node.dtstart), dtFormat);
-    const fmtDTEnd = format(new Date(node.dtend), dtFormat);
-    return (
-      <div key={index}>
-        <ListItem button alignItems="flex-start">
-          <ListItemIcon>
-            <EventIcon style={{ color: "#FFFF00" }} />
-          </ListItemIcon>
-          <ListItemText
-            primary={
-              <React.Fragment>
-                <Typography
-                  component="p"
-                  //variant="body2"
-                  style={{ color: "#FFFFFF" }}
-                >
-                  {fmtDTStart} - {fmtDTEnd}
-                </Typography>
-                <Typography
-                  component="p"
-                  //variant="body2"
-                  style={{ color: "#FFFFFF", fontWeight: "bold" }}
-                >
-                  {node.title}
-                </Typography>
-                <Typography
-                  component="p"
-                  //variant="body2"
-                  style={{ color: "#FFFFFF" }}
-                >
-                  {node.location}
-                </Typography>
-              </React.Fragment>
-            }
-            secondary={
-              <React.Fragment>
-                <Typography
-                  component="span"
-                  //variant="body2"
-                  style={{ color: "#FFFFFF" }}
-                >
-                  {node.description}
-                </Typography>
-              </React.Fragment>
-            }
-          />
-        </ListItem>
-      </div>
-    );
-  });
-  return <List>{events}</List>;
+  //list.sort((a, b) => (a.color > b.color) ? 1 : -1)
+  const events = props.events
+    .sort((a, b) => {
+      return new Date(a.dtstart) > new Date(b.dtend) ? 1 : -1;
+    })
+    .map((node, index) => {
+      const dtFormat = "MMMM d, yyyy h:mm aaaa";
+      const fmtDTStart = format(new Date(node.dtstart), dtFormat);
+      const fmtDTEnd = format(new Date(node.dtend), dtFormat);
+      return (
+        <div key={index}>
+          <ListItem button alignItems="flex-start">
+            <ListItemIcon>
+              <EventIcon style={{ color: "#FFFF00" }} />
+            </ListItemIcon>
+            <ListItemText
+              primary={
+                <React.Fragment>
+                  <Typography
+                    component="p"
+                    //variant="body2"
+                    style={{ color: "#FFFFFF" }}
+                  >
+                    {fmtDTStart} - {fmtDTEnd}
+                  </Typography>
+                  <Typography
+                    component="p"
+                    //variant="body2"
+                    style={{ color: "#FFFFFF", fontWeight: "bold" }}
+                  >
+                    {node.title}
+                  </Typography>
+                  <Typography
+                    component="p"
+                    //variant="body2"
+                    style={{ color: "#FFFFFF" }}
+                  >
+                    {node.location}
+                  </Typography>
+                </React.Fragment>
+              }
+              secondary={
+                <React.Fragment>
+                  <Typography
+                    component="span"
+                    //variant="body2"
+                    style={{ color: "#FFFFFF" }}
+                  >
+                    {node.description}
+                  </Typography>
+                </React.Fragment>
+              }
+            />
+          </ListItem>
+        </div>
+      );
+    });
+  return (
+    <div>
+      <List>{events}</List>
+    </div>
+  );
 };

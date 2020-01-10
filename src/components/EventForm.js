@@ -13,7 +13,7 @@ const containerStyle = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  backgroundColor: "rgba(255, 255, 255, .75)",
+  backgroundColor: "rgba(204, 204, 204)",
   padding: "0em 1em 1em",
   color: "#111111",
   borderRadius: "1em"
