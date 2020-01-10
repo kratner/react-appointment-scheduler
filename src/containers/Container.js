@@ -19,18 +19,18 @@ class Container extends Component {
     super(props);
     this.state = {
       dt: "",
-      formVisible: true,
+      formVisible: false,
       events: [
         {
-          dtstart: "09/01/2020 11:00:00",
-          dtend: "09/01/2020 12:00:33",
+          dtstart: new Date("09/01/2020 23:00"),
+          dtend: new Date("09/01/2020 23:45"),
           title: "Doctor's Appointment",
           location: "San Diego",
           description: "My annual physical exam"
         },
         {
-          dtstart: "09/15/2020 17:15:00",
-          dtend: "09/15/2020 19:15:00",
+          dtstart: new Date("09/15/2020 17:15"),
+          dtend: new Date("09/15/2020 19:15"),
           title: "Dinner Date",
           location: "San Diego",
           description: "Dinner with Jocelyn"
@@ -53,6 +53,7 @@ class Container extends Component {
   }
   handleFormSubmit(event) {
     let events = this.state.events;
+    debugger;
     events.push(event);
     debugger;
     this.setState({

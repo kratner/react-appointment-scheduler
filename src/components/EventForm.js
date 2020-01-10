@@ -9,20 +9,14 @@ const containerStyle = {
   position: "absolute",
   top: "50%",
   left: "50%",
-  width: "75%",
-  height: "75%",
   transform: "translateX(-50%) translateY(-50%)",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   backgroundColor: "rgba(255, 255, 255, .75)",
-  padding: "1em",
+  padding: "0em 1em 1em",
   color: "#111111",
   borderRadius: "1em"
-};
-
-const pickerStyle = {
-  marginTop: "1em"
 };
 
 const formTitleStyle = {
@@ -30,14 +24,17 @@ const formTitleStyle = {
 };
 
 export default props => {
-  const [selectedDate, handleDateChange] = useState(new Date());
+  const [selectedDTStart, handleDTStartChange] = useState(null);
+  const [selectedDTEnd, handleDTEndChange] = useState(null);
+  const [isDisabled, setDisabled] = useState(true);
+  const dtFormat = "MM/dd/yyyy HH:mm";
   const handleCancel = () => {
     props.onFormCancel();
   };
   const handleSubmit = () => {
     const event = {
-      dtstart: document.getElementById("dtstart").value,
-      dtend: document.getElementById("dtend").value,
+      dtstart: new Date(document.getElementById("dtstart").value),
+      dtend: new Date(document.getElementById("dtend").value),
       title: document.getElementById("event_title").value,
       location: document.getElementById("event_location").value,
       description: document.getElementById("event_description").value
@@ -46,50 +43,59 @@ export default props => {
   };
   const handleTextChange = () => {
     // TODO: enable submit button only when all fields are filled in
-    //debugger;
+    setDisabled(
+      document.getElementById("dtstart").value === "" ||
+        document.getElementById("dtend").value === "" ||
+        document.getElementById("event_title").value === "" ||
+        document.getElementById("event_location").value === "" ||
+        document.getElementById("event_description").value === ""
+    );
   };
   return (
     <div style={containerStyle}>
       <h3 style={formTitleStyle}>{props.formTitle}</h3>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <div>
-          <DateTimePicker
-            id="dtstart"
-            label="Start"
-            value={selectedDate}
-            onChange={handleDateChange}
-          />
-        </div>
-        <div>
-          <DateTimePicker
-            id="dtend"
-            label="End"
-            value={selectedDate}
-            onChange={handleDateChange}
-            style={pickerStyle}
-          />
-        </div>
+        <DateTimePicker
+          id="dtstart"
+          label="Start"
+          value={selectedDTStart}
+          onChange={handleDTStartChange}
+          format={dtFormat}
+        />
+        <DateTimePicker
+          id="dtend"
+          label="End"
+          value={selectedDTEnd}
+          onChange={handleDTEndChange}
+          format={dtFormat}
+        />
       </MuiPickersUtilsProvider>
-      <TextField
-        id="event_title"
-        label="Enter Title"
-        onChange={handleTextChange}
-      />
+      <TextField id="event_title" label="Title" onChange={handleTextChange} />
       <TextField
         id="event_location"
-        label="Enter Location"
+        label="Location"
         onChange={handleTextChange}
       />
       <TextField
         id="event_description"
-        label="Enter Description"
+        label="Description"
         onChange={handleTextChange}
       />
-      <div style={{ marginTop: "1em" }}>
-        <Button variant="contained" onClick={handleCancel}>
+      <div style={{ marginTop: "2em", minWidth: "12em" }}>
+        <Button
+          variant="contained"
+          onClick={handleCancel}
+          style={{ marginRight: "1em" }}
+        >
           Cancel
         </Button>
-        <Button variant="contained" color="primary" onClick={handleSubmit}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleSubmit}
+          id="formSubmit"
+          disabled={isDisabled}
+        >
           Submit
         </Button>
       </div>
