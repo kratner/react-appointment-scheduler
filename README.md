@@ -6,6 +6,10 @@ keith.ratner@gmail.com
 
 https://github.com/kratner
 
+https://www.linkedin.com/in/keithratner
+
+---
+
 ## Instructions
 
 Unzip package. In project folder, run:
