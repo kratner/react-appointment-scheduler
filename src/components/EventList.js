@@ -7,8 +7,12 @@ import Typography from "@material-ui/core/Typography";
 import EventIcon from "@material-ui/icons/Event";
 import { format } from "date-fns";
 
+const containerStyle = {
+  overflow: "scroll",
+  width: "100%"
+};
+
 export default props => {
-  //list.sort((a, b) => (a.color > b.color) ? 1 : -1)
   const events = props.events
     .sort((a, b) => {
       return new Date(a.dtstart) > new Date(b.dtend) ? 1 : -1;
@@ -66,7 +70,7 @@ export default props => {
       );
     });
   return (
-    <div>
+    <div style={containerStyle}>
       <List>{events}</List>
     </div>
   );

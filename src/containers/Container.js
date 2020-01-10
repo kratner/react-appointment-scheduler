@@ -10,7 +10,6 @@ const style = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  justifyContent: "center",
   width: "100%",
   height: "100vh",
   padding: "0em 1em"
@@ -29,6 +28,62 @@ class Container extends Component {
           title: "Doctor's Appointment",
           location: "San Diego",
           description: "My annual physical exam"
+        },
+        {
+          dtstart: new Date("09/15/2020 17:15"),
+          dtend: new Date("09/15/2020 19:15"),
+          title: "Dinner Date",
+          location: "San Diego",
+          description: "Dinner with Jocelyn"
+        },
+        {
+          dtstart: new Date("7/15/2020 17:15"),
+          dtend: new Date("7/15/2020 19:15"),
+          title: "Dinner Date",
+          location: "San Diego",
+          description: "Dinner with Jocelyn"
+        },
+        {
+          dtstart: new Date("09/15/2020 17:15"),
+          dtend: new Date("09/15/2020 19:15"),
+          title: "Dinner Date",
+          location: "San Diego",
+          description: "Dinner with Jocelyn"
+        },
+        {
+          dtstart: new Date("7/15/2020 17:15"),
+          dtend: new Date("7/15/2020 19:15"),
+          title: "Dinner Date",
+          location: "San Diego",
+          description: "Dinner with Jocelyn"
+        },
+        {
+          dtstart: new Date("09/15/2020 17:15"),
+          dtend: new Date("09/15/2020 19:15"),
+          title: "Dinner Date",
+          location: "San Diego",
+          description: "Dinner with Jocelyn"
+        },
+        {
+          dtstart: new Date("7/15/2020 17:15"),
+          dtend: new Date("7/15/2020 19:15"),
+          title: "Dinner Date",
+          location: "San Diego",
+          description: "Dinner with Jocelyn"
+        },
+        {
+          dtstart: new Date("09/15/2020 17:15"),
+          dtend: new Date("09/15/2020 19:15"),
+          title: "Dinner Date",
+          location: "San Diego",
+          description: "Dinner with Jocelyn"
+        },
+        {
+          dtstart: new Date("7/15/2020 17:15"),
+          dtend: new Date("7/15/2020 19:15"),
+          title: "Dinner Date",
+          location: "San Diego",
+          description: "Dinner with Jocelyn"
         },
         {
           dtstart: new Date("09/15/2020 17:15"),

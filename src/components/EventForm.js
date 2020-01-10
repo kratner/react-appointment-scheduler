@@ -16,7 +16,9 @@ const containerStyle = {
   backgroundColor: "rgba(204, 204, 204)",
   padding: "0em 1em 1em",
   color: "#111111",
-  borderRadius: "1em"
+  borderRadius: "1em",
+  boxShadow: "#000000 3px 3px 4px 1px",
+  border: "1px #000000 solid"
 };
 
 const formTitleStyle = {
@@ -28,9 +30,6 @@ export default props => {
   const [selectedDTEnd, handleDTEndChange] = useState(null);
   const [isDisabled, setDisabled] = useState(true);
   const dtFormat = "MM/dd/yyyy HH:mm";
-  const handleCancel = () => {
-    props.onFormCancel();
-  };
   const handleSubmit = () => {
     const event = {
       dtstart: new Date(document.getElementById("dtstart").value),
@@ -42,7 +41,6 @@ export default props => {
     props.onFormSubmit(event);
   };
   const handleTextChange = () => {
-    // TODO: enable submit button only when all fields are filled in
     setDisabled(
       document.getElementById("dtstart").value === "" ||
         document.getElementById("dtend").value === "" ||
@@ -52,7 +50,7 @@ export default props => {
     );
   };
   return (
-    <div style={containerStyle}>
+    <div style={containerStyle} id="appointmentform">
       <h3 style={formTitleStyle}>{props.formTitle}</h3>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <DateTimePicker
@@ -84,7 +82,7 @@ export default props => {
       <div style={{ marginTop: "2em", minWidth: "12em" }}>
         <Button
           variant="contained"
-          onClick={handleCancel}
+          onClick={props.onFormCancel}
           style={{ marginRight: "1em" }}
         >
           Cancel
