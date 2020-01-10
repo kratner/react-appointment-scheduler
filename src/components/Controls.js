@@ -24,6 +24,7 @@ export default props => {
         startIcon={<AddIcon />}
         onClick={props.onShowFormClick}
         title={props.formVisible ? `Hide Form` : `Show Form`}
+        disabled={props.formVisible}
       >
         Add Appointment
       </Button>
