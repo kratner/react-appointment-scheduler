@@ -11,4 +11,10 @@
   #titlebar button {
     margin-bottom: 0.5em;
   }
+  .deletebutton .MuiButton-startIcon {
+    margin: 0;
+  }
+  .deletebuttontext {
+    display: none;
+  }
 }

@@ -5,6 +5,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 import EventIcon from "@material-ui/icons/Event";
+import Button from "@material-ui/core/Button";
+import RemoveIcon from "@material-ui/icons/Remove";
 import { format } from "date-fns";
 
 const containerStyle = {
@@ -35,7 +37,20 @@ export default props => {
                     //variant="body2"
                     style={{ color: "#FFFFFF" }}
                   >
-                    {fmtDTStart} - {fmtDTEnd}
+                    <span style={{ fontWeight: "bold", marginRight: ".5em" }}>
+                      From:
+                    </span>
+                    {fmtDTStart}
+                  </Typography>
+                  <Typography
+                    component="p"
+                    //variant="body2"
+                    style={{ color: "#FFFFFF" }}
+                  >
+                    <span style={{ fontWeight: "bold", marginRight: ".5em" }}>
+                      To:
+                    </span>
+                    {fmtDTEnd}
                   </Typography>
                   <Typography
                     component="p"
@@ -49,6 +64,9 @@ export default props => {
                     //variant="body2"
                     style={{ color: "#FFFFFF" }}
                   >
+                    <span style={{ fontWeight: "bold", marginRight: ".5em" }}>
+                      Location:
+                    </span>
                     {node.location}
                   </Typography>
                 </React.Fragment>
@@ -58,13 +76,26 @@ export default props => {
                   <Typography
                     component="span"
                     //variant="body2"
-                    style={{ color: "#FFFFFF" }}
+                    style={{ color: "#FFFFFF", fontSize: "1em" }}
                   >
                     {node.description}
                   </Typography>
                 </React.Fragment>
               }
             />
+            <div>
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<RemoveIcon />}
+                onClick={() => props.onRemoveItem(node)}
+                title="Cancel (Delete) Appointment"
+                disabled={props.formVisible}
+                className="deletebutton"
+              >
+                <span className="deletebuttontext">Cancel (Delete)</span>
+              </Button>
+            </div>
           </ListItem>
         </div>
       );
