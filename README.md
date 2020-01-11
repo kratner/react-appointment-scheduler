@@ -20,6 +20,8 @@ then
 
 `npm start`
 
+View application at http://localhost:3000
+
 Sample data contains three records. All data modifications are volatile thus will not persist across sessions.
 
 Note that this project uses Material UI libraries.

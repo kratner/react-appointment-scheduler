@@ -23,6 +23,7 @@ class Container extends Component {
       formVisible: false,
       events: [
         {
+          uid: 1578710655009,
           dtstart: new Date("09/01/2020 23:00"),
           dtend: new Date("09/01/2020 23:45"),
           title: "Doctor's Appointment",
@@ -30,6 +31,7 @@ class Container extends Component {
           description: "My annual physical exam"
         },
         {
+          uid: 1578710655010,
           dtstart: new Date("09/15/2020 17:15"),
           dtend: new Date("09/15/2020 19:15"),
           title: "Dinner Date",
@@ -37,11 +39,20 @@ class Container extends Component {
           description: "Dinner with Jocelyn"
         },
         {
+          uid: 1578710655011,
           dtstart: new Date("7/15/2020 17:15"),
           dtend: new Date("7/15/2020 19:15"),
           title: "Dinner Date",
           location: "San Diego",
           description: "Dinner with Jocelyn"
+        },
+        {
+          uid: 1578710655005,
+          dtstart: new Date("5/15/2020 17:15"),
+          dtend: new Date("5/15/2020 19:15"),
+          title: "Birthday Party",
+          location: "New York",
+          description: "Ellen's Birthday Party"
         }
       ]
     };
@@ -68,29 +79,16 @@ class Container extends Component {
       formVisible: false
     });
   }
-  removeEvent(array, dtstart, dtend, title, location, description) {
+  removeEvent(array, uid) {
     const index = array.findIndex(obj => {
-      return (
-        obj.dtstart === dtstart &&
-        obj.dtend === dtend &&
-        obj.title === title &&
-        obj.location === location &&
-        obj.description === description
-      );
+      return obj.uid === uid;
     });
     return index >= 0
       ? [...array.slice(0, index), ...array.slice(index + 1)]
       : array;
   }
-  handleRemoveItem(element) {
-    const events = this.removeEvent(
-      this.state.events,
-      element.dtstart,
-      element.dtend,
-      element.title,
-      element.location,
-      element.description
-    );
+  handleRemoveItem(uid) {
+    const events = this.removeEvent(this.state.events, uid);
     this.setState({ events: events });
   }
   componentDidMount() {

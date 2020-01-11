@@ -3,6 +3,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import { DateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { dateFormat } from "../utils/DateUtils";
 
 const containerStyle = {
   zIndex: 10,
@@ -29,7 +30,8 @@ export default props => {
   const [selectedDTStart, handleDTStartChange] = useState(null);
   const [selectedDTEnd, handleDTEndChange] = useState(null);
   const [isDisabled, setDisabled] = useState(true);
-  const dtFormat = "MM/dd/yyyy HH:mm";
+  //const dateFormat = "MM/dd/yyyy HH:mm";
+  //const dateFormat = "MMMM do, yyyy h:mm a";
   const handleEsc = evt => {
     if (evt.keyCode === 27) {
       window.removeEventListener("keydown", handleEsc);
@@ -43,7 +45,8 @@ export default props => {
       dtend: new Date(document.getElementById("dtend").value),
       title: document.getElementById("event_title").value,
       location: document.getElementById("event_location").value,
-      description: document.getElementById("event_description").value
+      description: document.getElementById("event_description").value,
+      uid: +new Date()
     };
     props.onFormSubmit(event);
   };
@@ -56,35 +59,57 @@ export default props => {
         document.getElementById("event_description").value === ""
     );
   };
+  const inputStyle = {
+    minWidth: "14em"
+  };
   return (
     <div style={containerStyle} id="appointmentform">
       <h3 style={formTitleStyle}>{props.formTitle}</h3>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <DateTimePicker
-          id="dtstart"
+          id="dtstart_formatted"
           label="Start"
           value={selectedDTStart}
           onChange={handleDTStartChange}
-          format={dtFormat}
+          format={dateFormat}
+          style={inputStyle}
         />
         <DateTimePicker
-          id="dtend"
+          id="dtend_formatted"
           label="End"
           value={selectedDTEnd}
           onChange={handleDTEndChange}
-          format={dtFormat}
+          format={dateFormat}
+          style={inputStyle}
         />
       </MuiPickersUtilsProvider>
-      <TextField id="event_title" label="Title" onChange={handleTextChange} />
+      <input
+        value={selectedDTStart === null ? "" : selectedDTStart}
+        id="dtstart"
+        type="hidden"
+      />
+      <input
+        value={selectedDTEnd === null ? "" : selectedDTEnd}
+        id="dtend"
+        type="hidden"
+      />
+      <TextField
+        id="event_title"
+        label="Title"
+        onChange={handleTextChange}
+        style={inputStyle}
+      />
       <TextField
         id="event_location"
         label="Location"
         onChange={handleTextChange}
+        style={inputStyle}
       />
       <TextField
         id="event_description"
         label="Description"
         onChange={handleTextChange}
+        style={inputStyle}
       />
       <div style={{ marginTop: "2em", minWidth: "12em" }}>
         <Button

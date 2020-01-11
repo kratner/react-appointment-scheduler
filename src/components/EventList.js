@@ -8,9 +8,10 @@ import EventIcon from "@material-ui/icons/Event";
 import Button from "@material-ui/core/Button";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { format } from "date-fns";
+import { dateFormat } from "../utils/DateUtils";
 
 const containerStyle = {
-  overflow: "scroll",
+  overflowY: "scroll",
   width: "100%"
 };
 
@@ -20,14 +21,13 @@ export default props => {
       return new Date(a.dtstart) > new Date(b.dtend) ? 1 : -1;
     })
     .map((node, index) => {
-      const dtFormat = "MMMM d, yyyy h:mm aaaa";
-      const fmtDTStart = format(new Date(node.dtstart), dtFormat);
-      const fmtDTEnd = format(new Date(node.dtend), dtFormat);
+      const fmtDTStart = format(new Date(node.dtstart), dateFormat);
+      const fmtDTEnd = format(new Date(node.dtend), dateFormat);
       return (
         <div key={index}>
           <ListItem button alignItems="flex-start">
             <ListItemIcon>
-              <EventIcon style={{ color: "#FFFF00" }} />
+              <EventIcon style={{ color: "#FFFF00", fontSize: "2em" }} />
             </ListItemIcon>
             <ListItemText
               primary={
@@ -88,7 +88,7 @@ export default props => {
                 variant="contained"
                 color="primary"
                 startIcon={<RemoveIcon />}
-                onClick={() => props.onRemoveItem(node)}
+                onClick={() => props.onRemoveItem(node.uid)}
                 title="Cancel (Delete) Appointment"
                 disabled={props.formVisible}
                 className="deletebutton"

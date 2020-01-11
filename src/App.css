@@ -1,5 +1,13 @@
+body {
+  background-color: rgb(93, 93, 93);
+}
 #appointmentform {
   width: 14em;
+}
+.MuiButton-root.deletebutton {
+  position: absolute;
+  right: 2em;
+  top: 1em;
 }
 @media only screen and (orientation: portrait) {
   #titlebar {
@@ -16,5 +24,18 @@
   }
   .deletebuttontext {
     display: none;
+  }
+  .MuiListItemIcon-root.MuiListItemIcon-alignItemsFlexStart {
+    min-width: 3em;
+  }
+  .MuiButton-root.deletebutton {
+    margin-right: 0em;
+    right: 1em;
+  }
+  .MuiListItem-root.MuiListItem-gutters {
+    padding-left: 0em;
+  }
+  .MuiListItemText-root.MuiListItemText-multiline {
+    max-width: 20em;
   }
 }
