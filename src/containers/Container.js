@@ -21,6 +21,8 @@ class Container extends Component {
     this.state = {
       dt: "",
       formVisible: false,
+      hasSelectedEvent: false,
+      selectedEvent: {},
       events: [
         {
           uid: 1578710655009,
@@ -60,6 +62,7 @@ class Container extends Component {
     this.handleFormCancel = this.handleFormCancel.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleRemoveItem = this.handleRemoveItem.bind(this);
+    this.handleEditItem = this.handleEditItem.bind(this);
   }
   handleShowFormClick() {
     this.setState({
@@ -68,12 +71,21 @@ class Container extends Component {
   }
   handleFormCancel() {
     this.setState({
-      formVisible: false
+      formVisible: false,
+      hasSelectedEvent: false,
+      selectedEvent: {}
     });
   }
   handleFormSubmit(event) {
     let events = this.state.events;
-    events.push(event);
+    const eventIndex = events.findIndex(obj => {
+      return obj.uid === event.uid;
+    });
+    if (eventIndex === -1) {
+      events.push(event);
+    } else {
+      events[eventIndex] = event;
+    }
     this.setState({
       events: events,
       formVisible: false
@@ -90,6 +102,13 @@ class Container extends Component {
   handleRemoveItem(uid) {
     const events = this.removeEvent(this.state.events, uid);
     this.setState({ events: events });
+  }
+  handleEditItem(node) {
+    this.setState({
+      selectedEvent: node,
+      hasSelectedEvent: true,
+      formVisible: true
+    });
   }
   componentDidMount() {
     const dt = new DateTime();
@@ -111,11 +130,14 @@ class Container extends Component {
             formTitle="Schedule an Event"
             onFormCancel={this.handleFormCancel}
             onFormSubmit={this.handleFormSubmit}
+            selectedEvent={this.state.selectedEvent}
+            hasSelectedEvent={this.state.hasSelectedEvent}
           />
         ) : null}
         <EventList
           events={this.state.events}
           onRemoveItem={this.handleRemoveItem}
+          onEditItem={this.handleEditItem}
         />
       </div>
     );

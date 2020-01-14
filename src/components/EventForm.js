@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import DateFnsUtils from "@date-io/date-fns";
 import { DateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import TextField from "@material-ui/core/TextField";
@@ -27,11 +27,21 @@ const formTitleStyle = {
 };
 
 export default props => {
-  const [selectedDTStart, handleDTStartChange] = useState(null);
-  const [selectedDTEnd, handleDTEndChange] = useState(null);
+  const [selectedDTStart, handleDTStartChange] = useState(
+    props.hasSelectedEvent ? props.selectedEvent.dtstart : null
+  );
+  const [selectedDTEnd, handleDTEndChange] = useState(
+    props.hasSelectedEvent ? props.selectedEvent.dtend : null
+  );
   const [isDisabled, setDisabled] = useState(true);
   //const dateFormat = "MM/dd/yyyy HH:mm";
   //const dateFormat = "MMMM do, yyyy h:mm a";
+  const frmTitle = useRef(null);
+  /*
+  useEffect(() => {
+    debugger;
+  }, [props, frmTitle]);
+  */
   const handleEsc = evt => {
     if (evt.keyCode === 27) {
       window.removeEventListener("keydown", handleEsc);
@@ -46,7 +56,7 @@ export default props => {
       title: document.getElementById("event_title").value,
       location: document.getElementById("event_location").value,
       description: document.getElementById("event_description").value,
-      uid: +new Date()
+      uid: props.hasSelectedEvent ? props.selectedEvent.uid : +new Date()
     };
     props.onFormSubmit(event);
   };
@@ -70,7 +80,10 @@ export default props => {
           id="dtstart_formatted"
           label="Start"
           value={selectedDTStart}
-          onChange={handleDTStartChange}
+          onChange={dt => {
+            handleDTStartChange(dt);
+            handleTextChange();
+          }}
           format={dateFormat}
           style={inputStyle}
         />
@@ -78,18 +91,21 @@ export default props => {
           id="dtend_formatted"
           label="End"
           value={selectedDTEnd}
-          onChange={handleDTEndChange}
+          onChange={dt => {
+            handleDTEndChange(dt);
+            handleTextChange();
+          }}
           format={dateFormat}
           style={inputStyle}
         />
       </MuiPickersUtilsProvider>
       <input
-        value={selectedDTStart === null ? "" : selectedDTStart}
+        defaultValue={selectedDTStart === null ? "" : selectedDTStart}
         id="dtstart"
         type="hidden"
       />
       <input
-        value={selectedDTEnd === null ? "" : selectedDTEnd}
+        defaultValue={selectedDTEnd === null ? "" : selectedDTEnd}
         id="dtend"
         type="hidden"
       />
@@ -98,18 +114,26 @@ export default props => {
         label="Title"
         onChange={handleTextChange}
         style={inputStyle}
+        inputRef={frmTitle}
+        defaultValue={props.hasSelectedEvent ? props.selectedEvent.title : null}
       />
       <TextField
         id="event_location"
         label="Location"
         onChange={handleTextChange}
         style={inputStyle}
+        defaultValue={
+          props.hasSelectedEvent ? props.selectedEvent.location : null
+        }
       />
       <TextField
         id="event_description"
         label="Description"
         onChange={handleTextChange}
         style={inputStyle}
+        defaultValue={
+          props.hasSelectedEvent ? props.selectedEvent.description : null
+        }
       />
       <div style={{ marginTop: "2em", minWidth: "12em" }}>
         <Button

@@ -5,6 +5,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 import EventIcon from "@material-ui/icons/Event";
+import EditIcon from "@material-ui/icons/Edit";
 import Button from "@material-ui/core/Button";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { format } from "date-fns";
@@ -83,7 +84,15 @@ export default props => {
                 </React.Fragment>
               }
             />
-            <div>
+            <div
+              style={{
+                position: "absolute",
+                right: "2em",
+                top: "1em",
+                display: "flex",
+                flexDirection: "column"
+              }}
+            >
               <Button
                 variant="contained"
                 color="primary"
@@ -92,8 +101,20 @@ export default props => {
                 title="Cancel (Delete) Appointment"
                 disabled={props.formVisible}
                 className="deletebutton"
+                style={{ marginBottom: "1em" }}
               >
-                <span className="deletebuttontext">Cancel (Delete)</span>
+                <span className="buttontext">Cancel (Delete)</span>
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<EditIcon />}
+                onClick={() => props.onEditItem(node)}
+                title="Edit Appointment"
+                disabled={props.formVisible}
+                className="editbutton"
+              >
+                <span className="buttontext">Edit</span>
               </Button>
             </div>
           </ListItem>

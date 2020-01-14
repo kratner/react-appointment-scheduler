@@ -4,10 +4,8 @@ body {
 #appointmentform {
   width: 14em;
 }
-.MuiButton-root.deletebutton {
-  position: absolute;
-  right: 2em;
-  top: 1em;
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-formControl.MuiInput-formControl {
+  margin-bottom: 1em;
 }
 @media only screen and (orientation: portrait) {
   #titlebar {
@@ -22,15 +20,19 @@ body {
   .deletebutton .MuiButton-startIcon {
     margin: 0;
   }
-  .deletebuttontext {
+  .buttontext {
     display: none;
   }
   .MuiListItemIcon-root.MuiListItemIcon-alignItemsFlexStart {
     min-width: 3em;
   }
-  .MuiButton-root.deletebutton {
+  .MuiButton-root.deletebutton,
+  .MuiButton-root.editbutton {
     margin-right: 0em;
     right: 1em;
+  }
+  .MuiButton-label .MuiButton-startIcon {
+    margin-right: 0em;
   }
   .MuiListItem-root.MuiListItem-gutters {
     padding-left: 0em;
