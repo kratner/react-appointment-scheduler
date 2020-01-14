@@ -2,6 +2,7 @@
   "name": "react-appointment-scheduler",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://kratner.github.io/react-appointment-scheduler/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -12,6 +13,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "deploy-profile": "gh-pages -d build --profile",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -38,6 +42,7 @@
     "@material-ui/icons": "^4.5.1",
     "@material-ui/pickers": "^3.2.8",
     "date-fns": "^2.9.0",
+    "gh-pages": "^2.2.0",
     "react-event-calendar": "^0.3.0",
     "react-icons": "^3.8.0",
     "styled-components": "^4.4.1"

@@ -2,6 +2,8 @@
 
 A ReactJS app built by Keith Ratner
 
+View live demo at https://kratner.github.io/react-appointment-scheduler
+
 **Web:** https://keithratner.live
 
 **E-Mail:** keith.ratner@gmail.com
